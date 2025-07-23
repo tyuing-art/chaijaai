@@ -95,6 +95,154 @@ if (modelViewer) {
 }
 
 document.addEventListener('DOMContentLoaded', function() {
+    // Optimized 3D Model Loading
+    const modelViewer = document.querySelector('model-viewer');
+    const hero3D = document.querySelector('.hero-bg-3d');
+    
+    if (modelViewer && hero3D) {
+        // Show loading placeholder
+        hero3D.style.background = 'linear-gradient(135deg, rgba(92, 64, 51, 0.1) 0%, rgba(224, 159, 62, 0.1) 100%)';
+        
+        // Preload the model
+        modelViewer.addEventListener('load', () => {
+            hero3D.classList.add('loaded');
+        });
+        
+        // Fallback for slow connections
+        setTimeout(() => {
+            if (!hero3D.classList.contains('loaded')) {
+                hero3D.classList.add('loaded');
+            }
+        }, 3000);
+    }
+    
+    // Enhanced Scroll-based Animations
+    const observerOptions = {
+        threshold: 0.1,
+        rootMargin: '0px 0px -50px 0px'
+    };
+    
+    const scrollObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('visible');
+                
+                // Add staggered animation for child elements
+                const children = entry.target.querySelectorAll('.story-card, .experience-card, .instagram-post');
+                children.forEach((child, index) => {
+                    setTimeout(() => {
+                        child.classList.add('visible');
+                    }, index * 200);
+                });
+            }
+        });
+    }, observerOptions);
+    
+    // Observe all fade-in-scroll elements
+    document.querySelectorAll('.fade-in-scroll').forEach(el => {
+        scrollObserver.observe(el);
+    });
+    
+    // Parallax Effect for Hero Section
+    let ticking = false;
+    
+    function updateParallax() {
+        const scrolled = window.pageYOffset;
+        const parallaxElements = document.querySelectorAll('.parallax-element');
+        
+        parallaxElements.forEach(element => {
+            const speed = element.dataset.speed || 0.5;
+            const yPos = -(scrolled * speed);
+            element.style.transform = `translateY(${yPos}px)`;
+        });
+        
+        ticking = false;
+    }
+    
+    function requestParallaxUpdate() {
+        if (!ticking) {
+            requestAnimationFrame(updateParallax);
+            ticking = true;
+        }
+    }
+    
+    window.addEventListener('scroll', requestParallaxUpdate);
+    
+    // Create Ambient Particles
+    function createAmbientParticles() {
+        const sections = document.querySelectorAll('.tea-experience-section, .cinema-section, .instagram-section');
+        
+        sections.forEach(section => {
+            for (let i = 0; i < 5; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'ambient-particle';
+                particle.innerHTML = Math.random() > 0.5 ? '🍃' : '✨';
+                particle.style.left = Math.random() * 100 + '%';
+                particle.style.top = Math.random() * 100 + '%';
+                particle.style.animationDelay = Math.random() * 8 + 's';
+                particle.style.fontSize = (Math.random() * 0.5 + 0.8) + 'rem';
+                section.appendChild(particle);
+            }
+        });
+    }
+    
+    createAmbientParticles();
+    
+    // Load Instagram Feed (Mock Data)
+    function loadInstagramFeed() {
+        const instagramGrid = document.getElementById('instagramFeed');
+        if (!instagramGrid) return;
+        
+        const mockPosts = [
+            {
+                image: 'https://images.unsplash.com/photo-1571934811356-5cc061b6821f?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80',
+                caption: 'Morning Kahwa ritual ☕✨'
+            },
+            {
+                image: 'https://images.unsplash.com/photo-1544787219-7f47ccb76574?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80',
+                caption: 'Handcrafted teaware from Kashmir 🎨'
+            },
+            {
+                image: 'https://images.unsplash.com/photo-1556679343-c7306c1976bc?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80',
+                caption: 'Sunset views from The Bund 🌅'
+            },
+            {
+                image: 'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80',
+                caption: 'Traditional Noon Chai preparation 🌸'
+            },
+            {
+                image: 'https://images.unsplash.com/photo-1576092768241-dec231879fc3?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80',
+                caption: 'Artisan at work creating magic ✋'
+            },
+            {
+                image: 'https://images.unsplash.com/photo-1597318181409-cf64d0b3d8fd?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80',
+                caption: 'Cozy corner for tea lovers 🏠'
+            }
+        ];
+        
+        instagramGrid.innerHTML = '';
+        
+        mockPosts.forEach((post, index) => {
+            const postElement = document.createElement('div');
+            postElement.className = 'instagram-post fade-in-scroll';
+            postElement.style.animationDelay = `${index * 0.1}s`;
+            postElement.innerHTML = `
+                <img src="${post.image}" alt="${post.caption}" loading="lazy">
+                <div class="post-caption" style="padding: 1rem; color: #5c4033; font-size: 0.9rem;">
+                    ${post.caption}
+                </div>
+            `;
+            
+            postElement.addEventListener('click', () => {
+                window.open('https://instagram.com/chaijaai', '_blank');
+            });
+            
+            instagramGrid.appendChild(postElement);
+        });
+    }
+    
+    loadInstagramFeed();
+    
   if (window.VanillaTilt) {
     VanillaTilt.init(document.querySelectorAll('.flip-card'), {
       max: 18,
@@ -404,6 +552,11 @@ document.addEventListener('DOMContentLoaded', function() {
         if (ADMIN_CREDENTIALS.adminEmails.includes(email)) {
             showAdminControls();
             showNotification('Admin access granted!', 'success');
+            
+            // Add enhanced admin features
+            setTimeout(() => {
+                addAdvancedAdminFeatures();
+            }, 1000);
         }
     }
     
@@ -540,6 +693,169 @@ document.addEventListener('DOMContentLoaded', function() {
                 document.body.removeChild(notification);
             }, 300);
         }, 3000);
+    }
+    
+    // Advanced Admin Features
+    function addAdvancedAdminFeatures() {
+        // Add content editing capabilities
+        const editableElements = document.querySelectorAll('h1, h2, h3, p, .film-description, .story-card p');
+        
+        editableElements.forEach(element => {
+            element.addEventListener('dblclick', function() {
+                if (currentUser && ADMIN_CREDENTIALS.adminEmails.includes(currentUser.email)) {
+                    makeElementEditable(element);
+                }
+            });
+        });
+        
+        // Add floating admin toolbar
+        const adminToolbar = document.createElement('div');
+        adminToolbar.className = 'admin-toolbar';
+        adminToolbar.innerHTML = `
+            <div class="admin-toolbar-content">
+                <button class="admin-tool-btn" onclick="toggleEditMode()" title="Toggle Edit Mode">
+                    ✏️ Edit
+                </button>
+                <button class="admin-tool-btn" onclick="addNewSection()" title="Add Section">
+                    ➕ Add
+                </button>
+                <button class="admin-tool-btn" onclick="saveChanges()" title="Save Changes">
+                    💾 Save
+                </button>
+                <button class="admin-tool-btn" onclick="previewMode()" title="Preview">
+                    👁️ Preview
+                </button>
+            </div>
+        `;
+        
+        adminToolbar.style.cssText = `
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: rgba(224, 159, 62, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 1rem;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+            z-index: 2000;
+            animation: slideInFromBottom 0.5s ease;
+        `;
+        
+        document.body.appendChild(adminToolbar);
+    }
+    
+    function makeElementEditable(element) {
+        const originalContent = element.innerHTML;
+        const isHeading = element.tagName.match(/^H[1-6]$/);
+        
+        if (isHeading) {
+            element.contentEditable = true;
+            element.style.outline = '2px dashed var(--color-saffron)';
+            element.focus();
+        } else {
+            const textarea = document.createElement('textarea');
+            textarea.value = element.textContent;
+            textarea.style.cssText = `
+                width: 100%;
+                min-height: 100px;
+                padding: 0.5rem;
+                border: 2px solid var(--color-saffron);
+                border-radius: 5px;
+                font-family: inherit;
+                font-size: inherit;
+                resize: vertical;
+            `;
+            
+            element.parentNode.replaceChild(textarea, element);
+            textarea.focus();
+            
+            textarea.addEventListener('blur', function() {
+                element.textContent = textarea.value;
+                textarea.parentNode.replaceChild(element, textarea);
+                showNotification('Content updated! Remember to save changes.', 'info');
+            });
+        }
+        
+        element.addEventListener('blur', function() {
+            element.contentEditable = false;
+            element.style.outline = 'none';
+            if (element.innerHTML !== originalContent) {
+                showNotification('Content updated! Remember to save changes.', 'info');
+            }
+        });
+        
+        element.addEventListener('keydown', function(e) {
+            if (e.key === 'Enter' && !e.shiftKey) {
+                e.preventDefault();
+                element.blur();
+            }
+        });
+    }
+    
+    // Global admin functions
+    window.toggleEditMode = function() {
+        document.body.classList.toggle('admin-edit-mode');
+        showNotification('Edit mode toggled! Double-click elements to edit.', 'info');
+    }
+    
+    window.addNewSection = function() {
+        const sectionType = prompt('What type of section would you like to add?\n1. Text Section\n2. Image Gallery\n3. Tea Menu Item\n\nEnter 1, 2, or 3:');
+        
+        switch(sectionType) {
+            case '1':
+                addTextSection();
+                break;
+            case '2':
+                addImageGallery();
+                break;
+            case '3':
+                addMenuSection();
+                break;
+            default:
+                showNotification('Invalid selection', 'error');
+        }
+    }
+    
+    window.saveChanges = function() {
+        // In a real application, this would save to a backend
+        const pageContent = document.documentElement.outerHTML;
+        localStorage.setItem('chaiJaaiPageContent', pageContent);
+        showNotification('Changes saved locally!', 'success');
+    }
+    
+    window.previewMode = function() {
+        document.body.classList.remove('admin-edit-mode');
+        showNotification('Preview mode activated', 'info');
+    }
+    
+    function addTextSection() {
+        const title = prompt('Enter section title:');
+        const content = prompt('Enter section content:');
+        
+        if (title && content) {
+            const newSection = document.createElement('section');
+            newSection.className = 'custom-section fade-in-scroll';
+            newSection.innerHTML = `
+                <div class="section-separator wave"></div>
+                <div style="padding: 4rem 2rem; background: linear-gradient(135deg, #f8f4e6 0%, #fff9f0 100%);">
+                    <div style="max-width: 800px; margin: 0 auto; text-align: center;">
+                        <h2 style="color: var(--color-walnut); margin-bottom: 2rem;">${title}</h2>
+                        <p style="color: #5c4033; font-size: 1.1rem; line-height: 1.6;">${content}</p>
+                    </div>
+                </div>
+            `;
+            
+            // Insert before footer
+            const footer = document.querySelector('footer');
+            footer.parentNode.insertBefore(newSection, footer);
+            
+            // Animate in
+            setTimeout(() => {
+                newSection.classList.add('visible');
+            }, 100);
+            
+            showNotification('New section added!', 'success');
+        }
     }
     
     const defaultPhotos = [
