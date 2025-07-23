@@ -320,9 +320,10 @@ document.addEventListener('DOMContentLoaded', function() {
     window.openAuthModal = openAuthModal;
     window.closeAuthModal = closeAuthModal;
     window.switchAuthForm = switchAuthForm;
-    window.signInWithGoogle = signInWithGoogle;
     window.handleLogin = handleLogin;
     window.handleSignup = handleSignup;
+    window.signInWithGoogle = signInWithGoogle;
+    window.logout = logout;
     
     function signInWithGoogle() {
         // Create a more realistic Google OAuth simulation
@@ -471,39 +472,14 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
     
-    window.logout = logout;
-    
-    function logout() {
-        currentUser = null;
-        localStorage.removeItem('chaiJaaiUser');
-        updateAuthButtons();
-        hideAdminControls();
-        showNotification('Successfully logged out!', 'success');
-    }
-    
-    function hideAdminControls() {
-        // Remove admin controls from comments
-        const adminControls = document.querySelectorAll('.admin-controls');
-        adminControls.forEach(control => control.remove());
-        
-        // Remove admin panel link
-        const adminLink = document.querySelector('.admin-panel-link');
-        if (adminLink) {
-            adminLink.remove();
-        }
-    }
-    
-    // Admin functions for comment management
     window.editComment = function(index) {
         const comments = JSON.parse(localStorage.getItem('comments') || '[]');
         const comment = comments[index];
-        if (comment) {
-            const newText = prompt('Edit comment:', comment.text);
-            if (newText && newText.trim()) {
-                comments[index].text = newText.trim();
-                localStorage.setItem('comments', JSON.stringify(comments));
-                location.reload(); // Refresh to show changes
-            }
+        const newText = prompt('Edit comment:', comment.text);
+        if (newText && newText !== comment.text) {
+            comments[index].text = newText;
+            localStorage.setItem('comments', JSON.stringify(comments));
+            location.reload();
         }
     }
     
@@ -512,8 +488,15 @@ document.addEventListener('DOMContentLoaded', function() {
             const comments = JSON.parse(localStorage.getItem('comments') || '[]');
             comments.splice(index, 1);
             localStorage.setItem('comments', JSON.stringify(comments));
-            location.reload(); // Refresh to show changes
+            location.reload();
         }
+    }
+    
+    function logout() {
+        currentUser = null;
+        localStorage.removeItem('chaiJaaiUser');
+        updateAuthButtons();
+        showNotification('Successfully logged out!', 'success');
     }
     
     function showNotification(message, type) {
@@ -559,7 +542,38 @@ document.addEventListener('DOMContentLoaded', function() {
         }, 3000);
     }
     
-    window.showNotification = showNotification;
+    const defaultPhotos = [
+        {
+            url: 'https://images.unsplash.com/photo-1571934811356-5cc061b6821f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80',
+            title: 'Masala Chai',
+            description: 'Traditional spiced tea with aromatic herbs and spices'
+        },
+        {
+            url: 'https://images.unsplash.com/photo-1597318181409-cf64d0b3d8fd?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80',
+            title: 'Ginger Tea',
+            description: 'Fresh ginger tea with honey and lemon'
+        },
+        {
+            url: 'https://images.unsplash.com/photo-1544787219-7f47ccb76574?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80',
+            title: 'Cardamom Tea',
+            description: 'Aromatic cardamom-infused tea blend'
+        },
+        {
+            url: 'https://images.unsplash.com/photo-1556679343-c7306c1976bc?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80',
+            title: 'Green Tea',
+            description: 'Premium green tea leaves with natural antioxidants'
+        },
+        {
+            url: 'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80',
+            title: 'Earl Grey',
+            description: 'Classic Earl Grey with bergamot oil'
+        },
+        {
+            url: 'https://images.unsplash.com/photo-1576092768241-dec231879fc3?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80',
+            title: 'Herbal Tea',
+            description: 'Caffeine-free herbal blend with chamomile'
+        }
+    ];
     
     function loadGallery() {
         const galleryGrid = document.getElementById('galleryGrid');
