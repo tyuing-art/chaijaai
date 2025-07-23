@@ -1,0 +1,12 @@
+{
+  "name": "project",
+  "version": "1.0.0",
+  "description": "A modern, culturally rich website for Chai Jaai, a renowned tea room in Srinagar, Kashmir. The website features a responsive design, 3D tea cup model integration, and authentic Kashmiri cultural elements.",
+  "main": "admin-script.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
