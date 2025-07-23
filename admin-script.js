@@ -3,14 +3,23 @@
 // Admin credentials (in production, this should be server-side)
 const ADMIN_CREDENTIALS = {
     username: 'admin',
-    password: 'chaijaai2024'
+    password: 'chaijaai2024',
+    adminEmails: ['hashimadil0001@gmail.com', 'admin@chaijaai.com']
 };
 
 // Check if user is already logged in
 function checkAuth() {
     const isLoggedIn = localStorage.getItem('adminLoggedIn');
-    if (isLoggedIn === 'true') {
+    const user = JSON.parse(localStorage.getItem('chaiJaaiUser') || '{}');
+    
+    if (isLoggedIn === 'true' || ADMIN_CREDENTIALS.adminEmails.includes(user.email)) {
         showDashboard();
+    } else {
+        // Check if user is logged in from main site with admin email
+        if (user.email && ADMIN_CREDENTIALS.adminEmails.includes(user.email)) {
+            localStorage.setItem('adminLoggedIn', 'true');
+            showDashboard();
+        }
     }
 }
 
@@ -22,7 +31,8 @@ function handleLogin(event) {
     const password = document.getElementById('password').value;
     const errorDiv = document.getElementById('loginError');
     
-    if (username === ADMIN_CREDENTIALS.username && password === ADMIN_CREDENTIALS.password) {
+    if ((username === ADMIN_CREDENTIALS.username && password === ADMIN_CREDENTIALS.password) || 
+        ADMIN_CREDENTIALS.adminEmails.includes(username)) {
         localStorage.setItem('adminLoggedIn', 'true');
         showDashboard();
         errorDiv.textContent = '';
