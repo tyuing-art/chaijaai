@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="400" height="400" viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg">
+    <!-- Cup Base -->
+    <ellipse cx="200" cy="300" rx="100" ry="30" fill="#D4AF37"/>
+    
+    <!-- Cup Body -->
+    <path d="M100 300 C100 200 300 200 300 300" fill="#FFF" stroke="#D4AF37" stroke-width="3"/>
+    
+    <!-- Cup Interior -->
+    <path d="M110 300 C110 210 290 210 290 300" fill="#FFB5B5"/>
+    
+    <!-- Steam -->
+    <g class="steam" opacity="0.6">
+        <path d="M180 180 C190 170 210 170 220 180 S230 200 220 210" fill="none" stroke="#CCC" stroke-width="2">
+            <animate attributeName="d" 
+                     dur="3s" 
+                     repeatCount="indefinite"
+                     values="
+                        M180 180 C190 170 210 170 220 180 S230 200 220 210;
+                        M180 170 C190 160 210 160 220 170 S230 190 220 200;
+                        M180 180 C190 170 210 170 220 180 S230 200 220 210"
+            />
+        </path>
+        <path d="M160 160 C170 150 190 150 200 160 S210 180 200 190" fill="none" stroke="#CCC" stroke-width="2">
+            <animate attributeName="d" 
+                     dur="4s" 
+                     repeatCount="indefinite"
+                     values="
+                        M160 160 C170 150 190 150 200 160 S210 180 200 190;
+                        M160 150 C170 140 190 140 200 150 S210 170 200 180;
+                        M160 160 C170 150 190 150 200 160 S210 180 200 190"
+            />
+        </path>
+    </g>
+    
+    <!-- Naqashi Pattern -->
+    <g fill="none" stroke="#D4AF37" stroke-width="1">
+        <!-- Floral Pattern -->
+        <path d="M120 250 C130 240 140 240 150 250 S160 270 150 280"/>
+        <path d="M250 250 C260 240 270 240 280 250 S290 270 280 280"/>
+        <path d="M180 260 C190 250 210 250 220 260 S230 280 220 290"/>
+        
+        <!-- Decorative Swirls -->
+        <path d="M140 270 Q150 260 160 270 T180 270"/>
+        <path d="M220 270 Q230 260 240 270 T260 270"/>
+    </g>
+</svg>

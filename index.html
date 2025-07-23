@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chai Jaai - Where Art Meets Tea</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdn.jsdelivr.net/npm/vanilla-tilt@1.7.3/dist/vanilla-tilt.min.js"></script>
+    <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
+</head>
+<body>
+    <header class="hero">
+        <nav>
+            <div class="logo">Chai Jaai</div>
+            <ul>
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#menu">Menu</a></li>
+                <li><a href="#shop">Shop</a></li>
+                <li><a href="#culture">Culture</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+            <div class="auth-buttons">
+                <button class="auth-btn login-btn" onclick="openAuthModal('login')">Login</button>
+                <button class="auth-btn signup-btn" onclick="openAuthModal('signup')">Sign Up</button>
+            </div>
+        </nav>
+        <!-- Background image -->
+        <div class="hero-bg-image"></div>
+        <!-- Full background 3D model -->
+        <div class="hero-bg-3d">
+          <model-viewer
+            src="models/_A_realistic_3D_model_0719162156_texture.glb"
+            alt="A beautiful 3D background model"
+            auto-rotate
+            camera-controls
+            shadow-intensity="1"
+            environment-image="neutral"
+            exposure="1"
+            camera-orbit="0deg 60deg 5m"
+            field-of-view="100deg"
+            auto-rotate-delay="0"
+            rotation-per-second="8deg"
+            min-camera-orbit="auto auto 2m"
+            max-camera-orbit="auto auto 7m"
+            interaction-prompt="none"
+            ar
+            ar-modes="webxr scene-viewer quick-look"
+            style="width:100vw;height:100vh;position:absolute;top:0;left:0;z-index:1;pointer-events:none;object-fit:cover;"
+          ></model-viewer>
+        </div>
+        <div class="hero-content">
+            <div class="hero-text">
+                <h1>Where Art Meets Tea</h1>
+                <h2>A Taste of Kashmir in Every Cup</h2>
+            </div>
+        </div>
+    </header>
+
+    <div class="section-separator wave"></div>
+
+    <section id="highlights" class="highlights-section fade-in">
+      <h2 class="section-title pop-up">Chai Jaai Highlights</h2>
+      <div class="flip-cards">
+        <div class="flip-card location-card">
+          <div class="flip-card-inner" style="width:100%; height:100%; border-radius:inherit;">
+            <div class="flip-card-front" style="width:100%; height:100%; border-radius:inherit; display:flex; align-items:center; justify-content:center;">
+              <span>📍 Location</span>
+            </div>
+            <div class="flip-card-back" style="position:relative; overflow:hidden; color:#fff; text-shadow:0 2px 8px rgba(0,0,0,0.45); border-radius:inherit;">
+              <img src="images/25a559fa10ab8f495566d86031ec6c49.jpg" alt="Location" style="position:absolute; inset:0; width:100%; height:100%; object-fit:cover; border-radius:inherit; z-index:1; opacity:1;" />
+              <div style="position:absolute; inset:0; background:rgba(30,20,10,0.45); z-index:2; border-radius:inherit;"></div>
+              <div style="position:relative; z-index:3; padding:2.5rem 1.2rem 1.2rem 1.2rem; height:100%; display:flex; flex-direction:column; justify-content:flex-end;">
+                <h3>Address</h3>
+                <p>1st Floor, Mahattas Studio, The Bund Road, Srinagar</p>
+                <p>Phone: +91 95962 48937</p>
+                <p>Hours: 9 AM–9 PM daily</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="flip-card">
+          <div class="flip-card-inner">
+            <div class="flip-card-front">
+              <span>🏛️ Ambience</span>
+            </div>
+            <div class="flip-card-back">
+              <h3>Design & View</h3>
+              <p>Victorian décor, French windows, papier-mâché art, samovars</p>
+              <p>Overlooks Bund Road & Jhelum River</p>
+            </div>
+          </div>
+        </div>
+        <div class="flip-card">
+          <div class="flip-card-inner">
+            <div class="flip-card-front">
+              <span>🍵 Menu</span>
+            </div>
+            <div class="flip-card-back">
+              <h3>Highlights</h3>
+              <p>60+ teas: Noon Chai, Kahwa, pastries, croissants, breads</p>
+            </div>
+          </div>
+        </div>
+        <div class="flip-card">
+          <div class="flip-card-inner">
+            <div class="flip-card-front">
+              <span>💰 Price</span>
+            </div>
+            <div class="flip-card-back">
+              <h3>Price & Ratings</h3>
+              <p>Approx ₹500 for two</p>
+              <p>Zomato rating: 4.2/5 (129 reviews)</p>
+            </div>
+          </div>
+        </div>
+        <div class="flip-card">
+          <div class="flip-card-inner">
+            <div class="flip-card-front">
+              <span>💬 Impressions</span>
+            </div>
+            <div class="flip-card-back">
+              <h3>Visitor Impressions</h3>
+              <p>Described as “gorgeous,” “quaint,” “mesmerizing,” and a blend of Kashmiri, Victorian, Persian, and English aesthetics.</p>
+              <p>“A piece of Kashmir for me.”</p>
+            </div>
+          </div>
+        </div>
+        <div class="flip-card">
+          <div class="flip-card-inner">
+            <div class="flip-card-front">
+              <span>🛍️ Shop</span>
+            </div>
+            <div class="flip-card-back">
+              <h3>Shop – Pyāla–Teaware</h3>
+              <p>Artisan Kashmiri-heritage ceramic teaware (“pyāla”): hand-painted cups, teapots, mugs, etc., showcasing papier-mâché traditions.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="section-separator wave"></div>
+
+    <section id="gallery" class="gallery-section">
+        <h2>Our Artisanal Tea Ware</h2>
+        <p class="gallery-intro">Discover our hand-painted Pyāla collection, crafted by Srinagar artisans using 200-year-old naqashi art</p>
+        <div class="gallery-grid" id="galleryGrid">
+            <!-- Gallery items will be loaded dynamically -->
+        </div>
+    </section>
+
+    <div class="section-separator curved"></div>
+
+    <section id="comments" class="comments-section">
+        <h2>Share Your Experience</h2>
+        <div class="comments-container">
+            <div class="comment-form">
+                <h3>Leave a Comment</h3>
+                <form id="commentForm">
+                    <div class="form-group">
+                        <input type="text" id="name" name="name" placeholder="Your Name" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="email" id="email" name="email" placeholder="Your Email" required>
+                    </div>
+                    <div class="form-group">
+                        <textarea id="comment" name="comment" placeholder="Share your thoughts about Chai Jaai..." rows="4" required></textarea>
+                    </div>
+                    <button type="submit" class="submit-btn">Post Comment</button>
+                </form>
+            </div>
+            
+            <div class="comments-display">
+                <h3>Recent Comments</h3>
+                <div id="commentsList">
+                    <div class="comment">
+                        <div class="comment-header">
+                            <span class="comment-author">Sarah M.</span>
+                            <span class="comment-date">2 days ago</span>
+                        </div>
+                        <p class="comment-text">Absolutely love the ambiance here! The Kahwa tea is divine and the view of the Jhelum River is breathtaking. A must-visit in Srinagar!</p>
+                    </div>
+                    <div class="comment">
+                        <div class="comment-header">
+                            <span class="comment-author">Rajesh K.</span>
+                            <span class="comment-date">1 week ago</span>
+                        </div>
+                        <p class="comment-text">The blend of English tea room elegance with Kashmiri culture is perfect. Great place to relax and enjoy authentic local flavors.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="section-separator diamond"></div>
+
+    <section id="about" class="about-section">
+        <h2>History of Chai Jaai</h2>
+        <div class="timeline-horizontal">
+          <div class="timeline-horizontal-event fade-in" style="--delay:0s">
+            <div class="timeline-horizontal-year left">Ancient Times</div>
+            <div class="timeline-horizontal-line"></div>
+            <div class="timeline-horizontal-desc right">Tea arrives in Kashmir via the Silk Road from China and Central Asia, becoming part of local culture.</div>
+          </div>
+          <div class="timeline-horizontal-event fade-in" style="--delay:1.2s">
+            <div class="timeline-horizontal-year right">17th–18th Century</div>
+            <div class="timeline-horizontal-line"></div>
+            <div class="timeline-horizontal-desc left">Mughal influence brings new tea traditions; Kahwa and Noon Chai become Kashmiri staples.</div>
+          </div>
+          <div class="timeline-horizontal-event fade-in" style="--delay:2.4s">
+            <div class="timeline-horizontal-year left">1800s</div>
+            <div class="timeline-horizontal-line"></div>
+            <div class="timeline-horizontal-desc right">Samovar (Russian kettle) and bone china cups become popular for serving tea in Kashmir.</div>
+          </div>
+          <div class="timeline-horizontal-event fade-in" style="--delay:3.6s">
+            <div class="timeline-horizontal-year right">2016</div>
+            <div class="timeline-horizontal-line"></div>
+            <div class="timeline-horizontal-desc left">Chai Jaai is founded in Srinagar by Muneer Kabir, blending Kashmiri and English tea room culture.</div>
+          </div>
+          <div class="timeline-horizontal-event fade-in" style="--delay:4.8s">
+            <div class="timeline-horizontal-year left">2017–2024</div>
+            <div class="timeline-horizontal-line"></div>
+            <div class="timeline-horizontal-desc right">Chai Jaai becomes a cultural icon, known for its ambiance, artisan teaware, and 60+ tea varieties.</div>
+          </div>
+        </div>
+    </section>
+
+    <div class="section-separator"></div>
+
+    <section id="menu" class="menu-section">
+        <h2>Our Menu</h2>
+        <div class="menu-items">
+            <div class="menu-category">
+                <h3>Signature Teas</h3>
+                <div class="menu-item">
+                    <h4>Noon Chai</h4>
+                    <p>Traditional pink tea made with green tea leaves, baking soda, and milk</p>
+                </div>
+                <div class="menu-item">
+                    <h4>Kahwah</h4>
+                    <p>Green tea infused with saffron, cardamom, cinnamon, and almonds</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="section-separator wave"></div>
+
+    <footer>
+        <div class="contact-info">
+            <h3>Visit Us</h3>
+            <p>1201 The Bund, Srinagar, Jammu & Kashmir, India</p>
+        </div>
+    </footer>
+
+
+    <div id="authModal" class="auth-modal">
+        <div class="auth-modal-content">
+            <span class="close-auth" onclick="closeAuthModal()">&times;</span>
+            
+            <!-- Login Form -->
+            <div id="loginForm" class="auth-form">
+                <h2>Welcome Back</h2>
+                <p class="auth-subtitle">Sign in to your Chai Jaai account</p>
+                
+                <button class="google-auth-btn" onclick="signInWithGoogle()">
+                    <svg width="20" height="20" viewBox="0 0 24 24">
+                        <path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/>
+                        <path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/>
+                        <path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/>
+                        <path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/>
+                    </svg>
+                    Continue with Google
+                </button>
+                
+                <div class="auth-divider">
+                    <span>or</span>
+                </div>
+                
+                <form onsubmit="handleLogin(event)">
+                    <div class="form-group">
+                        <input type="email" id="loginEmail" placeholder="Email" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="password" id="loginPassword" placeholder="Password" required>
+                    </div>
+                    <button type="submit" class="auth-submit-btn">Sign In</button>
+                </form>
+                
+                <p class="auth-switch">
+                    Don't have an account? <a href="#" onclick="switchAuthForm('signup')">Sign up</a>
+                </p>
+            </div>
+            
+            <!-- Sign Up Form -->
+            <div id="signupForm" class="auth-form" style="display: none;">
+                <h2>Join Chai Jaai</h2>
+                <p class="auth-subtitle">Create your account to get started</p>
+                
+                <button class="google-auth-btn" onclick="signInWithGoogle()">
+                    <svg width="20" height="20" viewBox="0 0 24 24">
+                        <path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/>
+                        <path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/>
+                        <path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/>
+                        <path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/>
+                    </svg>
+                    Continue with Google
+                </button>
+                
+                <div class="auth-divider">
+                    <span>or</span>
+                </div>
+                
+                <form onsubmit="handleSignup(event)">
+                    <div class="form-group">
+                        <input type="text" id="signupName" placeholder="Full Name" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="email" id="signupEmail" placeholder="Email" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="password" id="signupPassword" placeholder="Password" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="password" id="signupConfirmPassword" placeholder="Confirm Password" required>
+                    </div>
+                    <button type="submit" class="auth-submit-btn">Create Account</button>
+                </form>
+                
+                <p class="auth-switch">
+                    Already have an account? <a href="#" onclick="switchAuthForm('login')">Sign in</a>
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
