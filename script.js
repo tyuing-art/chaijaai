@@ -10,9 +10,15 @@ document.querySelectorAll('nav a').forEach(anchor => {
 });
 
 // Intersection Observer for fade-in animations
+const ADMIN_CREDENTIALS = {
     username: 'admin',
     password: 'chaijaai2024',
     adminEmails: ['hashimadil0001@gmail.com', 'admin@chaijaai.com']
+};
+
+const observerOptions = {
+    threshold: 0.1,
+    rootMargin: '0px 0px -50px 0px'
 };
 
 const observer = new IntersectionObserver((entries) => {
@@ -311,88 +317,37 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
     
-
+    window.openAuthModal = openAuthModal;
+    window.closeAuthModal = closeAuthModal;
+    window.switchAuthForm = switchAuthForm;
     
     function signInWithGoogle() {
-        // Create a more realistic Google OAuth simulation
+        // Show loading state
         const googleBtn = event.target;
         const originalText = googleBtn.innerHTML;
-        
-        // Show loading state
         googleBtn.disabled = true;
-        googleBtn.innerHTML = '<span>Opening Google...</span>';
+        googleBtn.innerHTML = '<span>Redirecting...</span>';
         
-        // Create a popup-like experience
-        const popup = document.createElement('div');
-        popup.className = 'google-auth-popup';
-        popup.innerHTML = `
-            <div class="popup-content">
-                <div class="popup-header">
-                    <img src="https://developers.google.com/identity/images/g-logo.png" alt="Google" width="20">
-                    <span>Sign in with Google</span>
-                    <button class="popup-close" onclick="closeGooglePopup()">&times;</button>
-                </div>
-                <div class="popup-body">
-                    <p>Choose an account to continue to Chai Jaai</p>
-                    <div class="account-option" onclick="selectGoogleAccount('hashimadil0001@gmail.com', 'Hashim Adil')">
-                        <div class="account-avatar">H</div>
-                        <div class="account-info">
-                            <div class="account-name">Hashim Adil</div>
-                            <div class="account-email">hashimadil0001@gmail.com</div>
-                        </div>
-                    </div>
-                    <div class="account-option" onclick="selectGoogleAccount('demo@example.com', 'Demo User')">
-                        <div class="account-avatar">D</div>
-                        <div class="account-info">
-                            <div class="account-name">Demo User</div>
-                            <div class="account-email">demo@example.com</div>
-                        </div>
-                    </div>
-                    <div class="account-option" onclick="selectGoogleAccount('user@gmail.com', 'Test User')">
-                        <div class="account-avatar">T</div>
-                        <div class="account-info">
-                            <div class="account-name">Test User</div>
-                            <div class="account-email">user@gmail.com</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        `;
+        // Simulate Google OAuth redirect
+        showNotification('Redirecting to Google OAuth...', 'info');
         
-        document.body.appendChild(popup);
-        
-        // Reset button after a short delay
+        // Simulate successful Google login after redirect
         setTimeout(() => {
+            const mockUser = {
+                name: 'Demo User',
+                email: 'demo@example.com',
+                provider: 'google'
+            };
+            currentUser = mockUser;
+            localStorage.setItem('chaiJaaiUser', JSON.stringify(mockUser));
+            updateAuthButtons();
+            closeAuthModal();
+            showNotification('Successfully signed in with Google!', 'success');
+            
+            // Reset button
             googleBtn.disabled = false;
             googleBtn.innerHTML = originalText;
-        }, 1000);
-    }
-    
-    window.closeGooglePopup = function() {
-        const popup = document.querySelector('.google-auth-popup');
-        if (popup) {
-            document.body.removeChild(popup);
-        }
-    }
-    
-    window.selectGoogleAccount = function(email, name) {
-        const mockUser = {
-            name: name,
-            email: email,
-            provider: 'google'
-        };
-        currentUser = mockUser;
-        localStorage.setItem('chaiJaaiUser', JSON.stringify(mockUser));
-        updateAuthButtons();
-        closeAuthModal();
-        closeGooglePopup();
-        showNotification(`Successfully signed in as ${name}!`, 'success');
-        
-        // Check if user is admin
-        if (ADMIN_CREDENTIALS.adminEmails.includes(email)) {
-            showAdminControls();
-            showNotification('Admin access granted!', 'success');
-        }
+        }, 2000);
     }
     
     function handleLogin(event) {
@@ -460,49 +415,15 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
     
-
+    window.signInWithGoogle = signInWithGoogle;
+    window.handleLogin = handleLogin;
+    window.handleSignup = handleSignup;
     
     function logout() {
         currentUser = null;
         localStorage.removeItem('chaiJaaiUser');
         updateAuthButtons();
-        hideAdminControls();
         showNotification('Successfully logged out!', 'success');
-    }
-    
-    function hideAdminControls() {
-        // Remove admin controls from comments
-        const adminControls = document.querySelectorAll('.admin-controls');
-        adminControls.forEach(control => control.remove());
-        
-        // Remove admin panel link
-        const adminLink = document.querySelector('.admin-panel-link');
-        if (adminLink) {
-            adminLink.remove();
-        }
-    }
-    
-    // Admin functions for comment management
-    window.editComment = function(index) {
-        const comments = JSON.parse(localStorage.getItem('comments') || '[]');
-        const comment = comments[index];
-        if (comment) {
-            const newText = prompt('Edit comment:', comment.text);
-            if (newText && newText.trim()) {
-                comments[index].text = newText.trim();
-                localStorage.setItem('comments', JSON.stringify(comments));
-                location.reload(); // Refresh to show changes
-            }
-        }
-    }
-    
-    window.deleteCommentAdmin = function(index) {
-        if (confirm('Are you sure you want to delete this comment?')) {
-            const comments = JSON.parse(localStorage.getItem('comments') || '[]');
-            comments.splice(index, 1);
-            localStorage.setItem('comments', JSON.stringify(comments));
-            location.reload(); // Refresh to show changes
-        }
     }
     
     function showNotification(message, type) {
@@ -548,7 +469,7 @@ document.addEventListener('DOMContentLoaded', function() {
         }, 3000);
     }
     
-
+    window.logout = logout;
     
     function loadGallery() {
         const galleryGrid = document.getElementById('galleryGrid');
