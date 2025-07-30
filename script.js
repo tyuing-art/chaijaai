@@ -95,26 +95,134 @@ if (modelViewer) {
 }
 
 document.addEventListener('DOMContentLoaded', function() {
-    // Optimized 3D Model Loading
+    // Enhanced Error Handling
+    window.addEventListener('error', function(e) {
+        console.error('Global error:', e.error);
+        showNotification('Something went wrong. Please refresh the page.', 'error');
+    });
+    
+    // Enhanced 3D Model Loading with Fallback
     const modelViewer = document.querySelector('model-viewer');
     const hero3D = document.querySelector('.hero-bg-3d');
     
     if (modelViewer && hero3D) {
-        // Show loading placeholder
+        let modelLoadTimeout;
+        let fallbackActivated = false;
+        
+        // Show loading state immediately
         hero3D.style.background = 'linear-gradient(135deg, rgba(92, 64, 51, 0.1) 0%, rgba(224, 159, 62, 0.1) 100%)';
         
-        // Preload the model
+        // Set a timeout for model loading
+        modelLoadTimeout = setTimeout(() => {
+            if (!hero3D.classList.contains('loaded') && !fallbackActivated) {
+                activateFallback();
+            }
+        }, 5000); // 5 second timeout
+        
+        // Model load success
         modelViewer.addEventListener('load', () => {
+            clearTimeout(modelLoadTimeout);
             hero3D.classList.add('loaded');
+            console.log('3D model loaded successfully');
         });
         
-        // Fallback for slow connections
+        // Model load error
+        modelViewer.addEventListener('error', (e) => {
+            console.error('3D model failed to load:', e);
+            clearTimeout(modelLoadTimeout);
+            activateFallback();
+        });
+        
+        function activateFallback() {
+            if (fallbackActivated) return;
+            fallbackActivated = true;
+            
+            // Hide the model viewer
+            modelViewer.style.display = 'none';
+            
+            // Create animated fallback
+            const fallback = document.createElement('div');
+            fallback.className = 'hero-fallback';
+            fallback.innerHTML = `
+                <div class="fallback-animation">
+                    <div class="tea-cup-animation">
+                        <div class="cup">🫖</div>
+                        <div class="steam-particles">
+                            <span>☁️</span>
+                            <span>☁️</span>
+                            <span>☁️</span>
+                        </div>
+                    </div>
+                </div>
+            `;
+            
+            fallback.style.cssText = `
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                background: linear-gradient(135deg, rgba(92, 64, 51, 0.2) 0%, rgba(224, 159, 62, 0.2) 100%);
+                z-index: 2;
+            `;
+            
+            hero3D.appendChild(fallback);
+            hero3D.classList.add('loaded');
+            
+            // Add CSS for fallback animation
+            const style = document.createElement('style');
+            style.textContent = `
+                .tea-cup-animation {
+                    text-align: center;
+                    animation: gentle-float 3s ease-in-out infinite;
+                }
+                .cup {
+                    font-size: 4rem;
+                    margin-bottom: 1rem;
+                    display: block;
+                }
+                .steam-particles {
+                    display: flex;
+                    justify-content: center;
+                    gap: 0.5rem;
+                }
+                .steam-particles span {
+                    font-size: 1.5rem;
+                    animation: steam-float 2s ease-in-out infinite;
+                    opacity: 0.7;
+                }
+                .steam-particles span:nth-child(2) {
+                    animation-delay: 0.5s;
+                }
+                .steam-particles span:nth-child(3) {
+                    animation-delay: 1s;
+                }
+                @keyframes gentle-float {
+                    0%, 100% { transform: translateY(0px); }
+                    50% { transform: translateY(-10px); }
+                }
+                @keyframes steam-float {
+                    0% { transform: translateY(0px); opacity: 0.7; }
+                    50% { transform: translateY(-15px); opacity: 0.3; }
+                    100% { transform: translateY(-30px); opacity: 0; }
+                }
+            `;
+            document.head.appendChild(style);
+        }
+        
+        // Fallback for very slow connections
         setTimeout(() => {
             if (!hero3D.classList.contains('loaded')) {
                 hero3D.classList.add('loaded');
             }
-        }, 3000);
+        }, 8000);
     }
+    
+    // Optimized 3D Model Loading
+    // (Enhanced above)
     
     // Enhanced Scroll-based Animations
     const observerOptions = {
@@ -188,6 +296,55 @@ document.addEventListener('DOMContentLoaded', function() {
     
     createAmbientParticles();
     
+    // Enhanced Mobile Touch Support for Flip Cards
+    const flipCards = document.querySelectorAll('.flip-card');
+    flipCards.forEach(card => {
+        let isFlipped = false;
+        
+        // Touch support for mobile
+        card.addEventListener('touchstart', function(e) {
+            e.preventDefault();
+            if (!isFlipped) {
+                card.classList.add('flipped');
+                isFlipped = true;
+            } else {
+                card.classList.remove('flipped');
+                isFlipped = false;
+            }
+        });
+        
+        // Click support for desktop
+        card.addEventListener('click', function() {
+            if (window.innerWidth <= 768) return; // Skip on mobile to avoid double trigger
+            
+            if (!isFlipped) {
+                card.classList.add('flipped');
+                isFlipped = true;
+                setTimeout(() => {
+                    card.classList.remove('flipped');
+                    isFlipped = false;
+                }, 3000); // Auto-flip back after 3 seconds
+            }
+        });
+        
+        // Reset on mouse leave for desktop
+        card.addEventListener('mouseleave', function() {
+            if (window.innerWidth > 768) {
+                card.classList.remove('flipped');
+                isFlipped = false;
+            }
+        });
+    });
+    
+    // Add CSS for flipped state
+    const flipStyle = document.createElement('style');
+    flipStyle.textContent = `
+        .flip-card.flipped .flip-card-inner {
+            transform: rotateY(180deg);
+        }
+    `;
+    document.head.appendChild(flipStyle);
+    
     // Load Instagram Feed (Mock Data)
     function loadInstagramFeed() {
         const instagramGrid = document.getElementById('instagramFeed');
@@ -244,14 +401,18 @@ document.addEventListener('DOMContentLoaded', function() {
     loadInstagramFeed();
     
   if (window.VanillaTilt) {
-    VanillaTilt.init(document.querySelectorAll('.flip-card'), {
-      max: 18,
-      speed: 400,
-      scale: 1.04,
-      perspective: 900,
-      glare: true,
-      'max-glare': 0.18
-    });
+    // Only apply tilt on desktop
+    if (window.innerWidth > 768) {
+        VanillaTilt.init(document.querySelectorAll('.flip-card'), {
+            max: 15,
+            speed: 400,
+            scale: 1.03,
+            perspective: 1000,
+            glare: true,
+            'max-glare': 0.15,
+            'glare-prerender': false
+        });
+    }
   }
 
     // Comment form functionality
@@ -681,16 +842,50 @@ document.addEventListener('DOMContentLoaded', function() {
             color: white;
             font-weight: 600;
             z-index: 3000;
-            animation: slideIn 0.3s ease;
+            animation: slideInNotification 0.3s ease;
             background: ${backgroundColor};
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            max-width: 300px;
+            word-wrap: break-word;
         `;
+        
+        // Add slide-in animation
+        const notificationStyle = document.createElement('style');
+        notificationStyle.textContent = `
+            @keyframes slideInNotification {
+                from {
+                    opacity: 0;
+                    transform: translateX(100%);
+                }
+                to {
+                    opacity: 1;
+                    transform: translateX(0);
+                }
+            }
+            @keyframes slideOutNotification {
+                from {
+                    opacity: 1;
+                    transform: translateX(0);
+                }
+                to {
+                    opacity: 0;
+                    transform: translateX(100%);
+                }
+            }
+        `;
+        if (!document.querySelector('#notification-styles')) {
+            notificationStyle.id = 'notification-styles';
+            document.head.appendChild(notificationStyle);
+        }
         
         document.body.appendChild(notification);
         
         setTimeout(() => {
-            notification.style.animation = 'slideOut 0.3s ease';
+            notification.style.animation = 'slideOutNotification 0.3s ease';
             setTimeout(() => {
-                document.body.removeChild(notification);
+                if (notification.parentNode) {
+                    document.body.removeChild(notification);
+                }
             }, 300);
         }, 3000);
     }
@@ -828,6 +1023,56 @@ document.addEventListener('DOMContentLoaded', function() {
         showNotification('Preview mode activated', 'info');
     }
     
+    // Enhanced Performance Optimizations
+    
+    // Lazy load images
+    const images = document.querySelectorAll('img[loading="lazy"]');
+    if ('IntersectionObserver' in window) {
+        const imageObserver = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const img = entry.target;
+                    img.src = img.dataset.src || img.src;
+                    img.classList.remove('lazy');
+                    observer.unobserve(img);
+                }
+            });
+        });
+        
+        images.forEach(img => imageObserver.observe(img));
+    }
+    
+    // Optimize scroll performance
+    let ticking = false;
+    function optimizedScrollHandler() {
+        if (!ticking) {
+            requestAnimationFrame(() => {
+                // Scroll-based animations here
+                ticking = false;
+            });
+            ticking = true;
+        }
+    }
+    
+    window.addEventListener('scroll', optimizedScrollHandler, { passive: true });
+    
+    // Preload critical resources
+    function preloadCriticalResources() {
+        const criticalImages = [
+            'https://images.unsplash.com/photo-1571934811356-5cc061b6821f?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80'
+        ];
+        
+        criticalImages.forEach(src => {
+            const link = document.createElement('link');
+            link.rel = 'preload';
+            link.as = 'image';
+            link.href = src;
+            document.head.appendChild(link);
+        });
+    }
+    
+    preloadCriticalResources();
+    
     function addTextSection() {
         const title = prompt('Enter section title:');
         const content = prompt('Enter section content:');
@@ -856,6 +1101,52 @@ document.addEventListener('DOMContentLoaded', function() {
             
             showNotification('New section added!', 'success');
         }
+    }
+    
+    // Enhanced Mobile Menu
+    const mobileMenuToggle = document.querySelector('.mobile-menu-toggle');
+    const nav = document.querySelector('nav');
+    
+    if (mobileMenuToggle) {
+        mobileMenuToggle.addEventListener('click', (e) => {
+            e.stopPropagation();
+            nav.classList.toggle('mobile-menu-open');
+            
+            // Animate hamburger menu
+            const spans = mobileMenuToggle.querySelectorAll('span');
+            if (nav.classList.contains('mobile-menu-open')) {
+                spans[0].style.transform = 'rotate(45deg) translate(5px, 5px)';
+                spans[1].style.opacity = '0';
+                spans[2].style.transform = 'rotate(-45deg) translate(7px, -6px)';
+            } else {
+                spans[0].style.transform = 'none';
+                spans[1].style.opacity = '1';
+                spans[2].style.transform = 'none';
+            }
+        });
+        
+        // Close menu when clicking outside
+        document.addEventListener('click', (e) => {
+            if (!nav.contains(e.target) && nav.classList.contains('mobile-menu-open')) {
+                nav.classList.remove('mobile-menu-open');
+                const spans = mobileMenuToggle.querySelectorAll('span');
+                spans[0].style.transform = 'none';
+                spans[1].style.opacity = '1';
+                spans[2].style.transform = 'none';
+            }
+        });
+        
+        // Close menu when clicking on nav links
+        const navLinks = document.querySelectorAll('nav ul li a');
+        navLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                nav.classList.remove('mobile-menu-open');
+                const spans = mobileMenuToggle.querySelectorAll('span');
+                spans[0].style.transform = 'none';
+                spans[1].style.opacity = '1';
+                spans[2].style.transform = 'none';
+            });
+        });
     }
     
     const defaultPhotos = [
