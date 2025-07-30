@@ -484,7 +484,8 @@ nav a:hover {
 /* About Section */
 .about-section {
     padding: 8rem 2rem;
-    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+    background: linear-gradient(rgba(255,255,255,0.7), rgba(255,255,255,0.7)), url('images/13422907_811590892305874_1718663697_a.jpg') center center/cover no-repeat;
+    background-blend-mode: lighten;
     color: white;
     position: relative;
     overflow: hidden;
@@ -1060,30 +1061,18 @@ nav a:hover {
   z-index: 1;
 }
 .highlight-card {
-  background: rgba(255,255,255,0.18);
-  border-radius: 22px;
-  border: 2.5px solid var(--color-saffron);
-  box-shadow: 0 8px 32px rgba(255, 153, 51, 0.10), 0 2px 8px rgba(92, 64, 51, 0.08);
-  color: var(--card-text);
-  font-family: var(--card-font);
-  will-change: transform;
-  perspective: 800px;
-  transition: var(--transition), box-shadow 0.4s cubic-bezier(.25,.8,.25,1), transform 0.15s cubic-bezier(.25,.8,.25,1);
-  padding: 1.5rem 1.2rem 1.2rem 1.2rem;
-  min-width: 0;
-  min-height: 0;
-  max-width: 320px;
-  aspect-ratio: 1 / 1;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  position: relative;
+  background: linear-gradient(135deg, #fffdfa 80%, #ffe4b5 100%);
+  border-radius: 2rem;
+  box-shadow: 0 8px 32px rgba(224, 159, 62, 0.13), 0 2px 8px rgba(92, 64, 51, 0.10);
+  transition: transform 0.3s cubic-bezier(.23,1.01,.32,1), box-shadow 0.3s;
+  border: 2.5px solid #ffd70033;
   overflow: hidden;
-  justify-content: center;
+  font-family: var(--card-font);
 }
-.highlight-card:hover, .highlight-card.tilted {
-  box-shadow: 0 16px 48px rgba(255, 153, 51, 0.18), 0 4px 16px rgba(92, 64, 51, 0.13);
-  border-color: var(--color-gold);
+.highlight-card:hover {
+  transform: translateY(-10px) scale(1.04) rotate(-1deg);
+  box-shadow: 0 24px 56px rgba(255, 153, 51, 0.18), 0 6px 20px rgba(92, 64, 51, 0.16);
+  border-color: #ffd700;
 }
 .highlight-card h3, .highlight-card p, .highlight-card ul {
   color: var(--color-walnut);
@@ -1444,22 +1433,12 @@ nav a:hover {
 }
 /* Footer */
 footer {
-    background: linear-gradient(135deg, #2c1810 0%, #1a0f0a 100%);
-    color: white;
-    padding: 4rem 2rem 2rem;
-    position: relative;
-    overflow: hidden;
-}
-
-footer::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="20" cy="20" r="1" fill="%23ffd700" opacity="0.2"><animate attributeName="opacity" values="0.2;0.6;0.2" dur="4s" repeatCount="indefinite"/></circle><circle cx="80" cy="60" r="0.8" fill="%23e09f3e" opacity="0.3"><animate attributeName="opacity" values="0.3;0.7;0.3" dur="3s" repeatCount="indefinite"/></circle></svg>');
-    pointer-events: none;
+    background: linear-gradient(120deg, #fff8e1 60%, #ffe4b5 100%);
+    border-top: 4px solid #ffd700;
+    box-shadow: 0 -8px 32px rgba(224, 159, 62, 0.13);
+    color: #7a5c1e;
+    font-family: 'Playfair Display', serif;
+    padding: 2.5rem 1rem 1.5rem 1rem;
 }
 
 .footer-content {
@@ -1472,38 +1451,15 @@ footer::before {
     z-index: 2;
 }
 
-.footer-section h3,
-.footer-section h4 {
-    color: var(--color-gold);
-    margin-bottom: 1.5rem;
+.footer-section h4, .footer-logo h3 {
+    color: #bfa76f;
     font-size: 1.3rem;
 }
 
-.footer-logo h3 {
-    font-size: 2.5rem;
-    margin-bottom: 0.5rem;
-    font-family: 'Playfair Display', serif;
-}
-
 .footer-tagline {
-    color: rgba(255, 255, 255, 0.7);
+    color: #a67c52;
     font-style: italic;
-    font-size: 1rem;
-}
-
-.contact-details p {
-    color: rgba(255, 255, 255, 0.9);
-    margin-bottom: 0.8rem;
-    font-size: 1.1rem;
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-}
-
-.social-links {
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
+    margin-bottom: 0.5rem;
 }
 
 .social-link {
@@ -1512,19 +1468,19 @@ footer::before {
     gap: 0.8rem;
     color: rgba(255, 255, 255, 0.9);
     text-decoration: none;
-    padding: 0.8rem;
-    border-radius: 10px;
-    background: rgba(255, 255, 255, 0.1);
+    padding: 0.5rem 1.2rem;
+    border-radius: 1.2rem;
+    background: #fffdfa;
     backdrop-filter: blur(5px);
     border: 1px solid rgba(255, 255, 255, 0.2);
-    transition: all 0.3s ease;
+    transition: background 0.3s, box-shadow 0.3s;
+    margin: 0.2rem 0.5rem;
+    box-shadow: 0 2px 8px rgba(255, 153, 51, 0.10);
 }
 
 .social-link:hover {
-    background: rgba(224, 159, 62, 0.2);
-    border-color: var(--color-gold);
-    transform: translateX(5px);
-    color: var(--color-gold);
+    background: #ffe4b5;
+    box-shadow: 0 4px 16px rgba(255, 153, 51, 0.18);
 }
 
 .social-icon {
@@ -2646,3 +2602,79 @@ footer::before {
     opacity: 1;
     transform: translateX(0);
   }
+}
+
+.history-frame {
+  max-width: 900px;
+  margin: 2rem auto;
+  padding: 2.5rem 2rem;
+  background: rgba(255, 248, 230, 0.95); /* parchment effect */
+  border: 8px double #bfa76f;
+  border-radius: 32px;
+  box-shadow: 0 8px 32px rgba(80, 60, 20, 0.18), 0 1.5px 0 #e2c275 inset;
+  font-family: 'Georgia', 'Times New Roman', serif;
+  position: relative;
+  z-index: 2;
+  animation: fadeInUp 1.2s cubic-bezier(.23,1.01,.32,1) 1;
+  animation-fill-mode: both;
+}
+
+.history-frame h2, .history-frame .about-intro {
+  color: #7a5c1e;
+  text-shadow: 0 2px 8px #fff8e6, 0 1px 0 #bfa76f;
+}
+
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(60px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Laila Majnu Card Special Styling */
+.laila-majnu-card {
+  background: linear-gradient(120deg, #fff8e1 60%, #ffd6d6 100%);
+  border: 4px solid #e2c275;
+  box-shadow: 0 16px 48px rgba(224, 159, 62, 0.22), 0 4px 16px rgba(255, 153, 51, 0.18);
+  border-radius: 2.5rem;
+  padding: 2.5rem 2rem;
+  font-size: 1.18rem;
+  max-width: 700px;
+  margin: 2rem auto;
+  position: relative;
+  z-index: 2;
+  animation: popUp 1.2s cubic-bezier(.23,1.01,.32,1) 1;
+  animation-fill-mode: both;
+}
+.laila-majnu-card .film-poster img {
+  border-radius: 1.5rem;
+  border: 2px solid #ffd70099;
+  box-shadow: 0 8px 32px rgba(255, 153, 51, 0.13);
+}
+.laila-majnu-card .film-info h3 {
+  color: #bfa76f;
+  font-size: 2rem;
+  margin-bottom: 0.5rem;
+}
+.laila-majnu-card .film-description {
+  color: #7a5c1e;
+  font-size: 1.1rem;
+}
+.laila-majnu-card .film-quote {
+  background: #fff8e1;
+  border-left: 4px solid #ffd700;
+  padding: 1rem 1.5rem;
+  margin: 1.5rem 0 0.5rem 0;
+  font-style: italic;
+  color: #a67c52;
+  border-radius: 1rem;
+}
+
+/* Flip Card Animation */
+.flip-card, .highlight-card, .film-card, .experience-card {
+  opacity: 0;
+  transform: translateY(40px) scale(0.98);
+  transition: opacity 0.7s cubic-bezier(.23,1.01,.32,1), transform 0.7s cubic-bezier(.23,1.01,.32,1);
+}
+.flip-card.visible, .highlight-card.visible, .film-card.visible, .experience-card.visible {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}

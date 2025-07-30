@@ -46,6 +46,8 @@
             interaction-prompt="none"
             ar
             ar-modes="webxr scene-viewer quick-look"
+            reveal="auto"
+            preload
             style="width:100vw;height:100vh;position:absolute;top:0;left:0;z-index:1;pointer-events:none;object-fit:cover;"
           ></model-viewer>
         </div>
@@ -62,28 +64,20 @@
     <section id="highlights" class="highlights-section fade-in">
       <h2 class="section-title pop-up">Chai Jaai Highlights</h2>
       <div class="flip-cards">
-        <div class="flip-card location-card">
-          <div class="flip-card-inner" style="width:100%; height:100%; border-radius:inherit;">
-            <div class="flip-card-front" style="width:100%; height:100%; border-radius:inherit; display:flex; align-items:center; justify-content:center;">
-              <span>📍 Location</span>
-            </div>
-            <div class="flip-card-back" style="position:relative; overflow:hidden; color:#fff; text-shadow:0 2px 8px rgba(0,0,0,0.45); border-radius:inherit;">
-              <img src="images/25a559fa10ab8f495566d86031ec6c49.jpg" alt="Location" style="position:absolute; inset:0; width:100%; height:100%; object-fit:cover; border-radius:inherit; z-index:1; opacity:1;" />
-              <div style="position:absolute; inset:0; background:rgba(30,20,10,0.45); z-index:2; border-radius:inherit;"></div>
-              <div style="position:relative; z-index:3; padding:2.5rem 1.2rem 1.2rem 1.2rem; height:100%; display:flex; flex-direction:column; justify-content:flex-end;">
-                <h3>Address</h3>
-                <p>1st Floor, Mahattas Studio, The Bund Road, Srinagar</p>
-                <p>Phone: +91 95962 48937</p>
-                <p>Hours: 9 AM–9 PM daily</p>
-              </div>
+        <div class="flip-card location-card highlight-card">
+          <div class="flip-card-inner">
+            <div class="flip-card-front"><span>📍 Location</span></div>
+            <div class="flip-card-back">
+              <h3>Address</h3>
+              <p>1st Floor, Mahattas Studio, The Bund Road, Srinagar</p>
+              <p>Phone: +91 95962 48937</p>
+              <p>Hours: 9 AM–9 PM daily</p>
             </div>
           </div>
         </div>
-        <div class="flip-card">
+        <div class="flip-card highlight-card">
           <div class="flip-card-inner">
-            <div class="flip-card-front">
-              <span>🏛️ Ambience</span>
-            </div>
+            <div class="flip-card-front"><span>🏛️ Ambience</span></div>
             <div class="flip-card-back">
               <h3>Design & View</h3>
               <p>Victorian décor, French windows, papier-mâché art, samovars</p>
@@ -91,22 +85,18 @@
             </div>
           </div>
         </div>
-        <div class="flip-card">
+        <div class="flip-card highlight-card">
           <div class="flip-card-inner">
-            <div class="flip-card-front">
-              <span>🍵 Menu</span>
-            </div>
+            <div class="flip-card-front"><span>🍵 Menu</span></div>
             <div class="flip-card-back">
               <h3>Highlights</h3>
               <p>60+ teas: Noon Chai, Kahwa, pastries, croissants, breads</p>
             </div>
           </div>
         </div>
-        <div class="flip-card">
+        <div class="flip-card highlight-card">
           <div class="flip-card-inner">
-            <div class="flip-card-front">
-              <span>💰 Price</span>
-            </div>
+            <div class="flip-card-front"><span>💰 Price</span></div>
             <div class="flip-card-back">
               <h3>Price & Ratings</h3>
               <p>Approx ₹500 for two</p>
@@ -114,11 +104,9 @@
             </div>
           </div>
         </div>
-        <div class="flip-card">
+        <div class="flip-card highlight-card">
           <div class="flip-card-inner">
-            <div class="flip-card-front">
-              <span>💬 Impressions</span>
-            </div>
+            <div class="flip-card-front"><span>💬 Impressions</span></div>
             <div class="flip-card-back">
               <h3>Visitor Impressions</h3>
               <p>Described as “gorgeous,” “quaint,” “mesmerizing,” and a blend of Kashmiri, Victorian, Persian, and English aesthetics.</p>
@@ -126,14 +114,23 @@
             </div>
           </div>
         </div>
-        <div class="flip-card">
+        <div class="flip-card highlight-card">
           <div class="flip-card-inner">
-            <div class="flip-card-front">
-              <span>🛍️ Shop</span>
-            </div>
+            <div class="flip-card-front"><span>🛍️ Shop</span></div>
             <div class="flip-card-back">
               <h3>Shop – Pyāla–Teaware</h3>
               <p>Artisan Kashmiri-heritage ceramic teaware (“pyāla”): hand-painted cups, teapots, mugs, etc., showcasing papier-mâché traditions.</p>
+            </div>
+          </div>
+        </div>
+        <div class="flip-card highlight-card laila-majnu-card">
+          <div class="flip-card-inner">
+            <div class="flip-card-front"><span>🎬 Laila Majnu</span></div>
+            <div class="flip-card-back">
+              <img src="https://images.unsplash.com/photo-1489599162163-3fb5b9e4b6d3?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Laila Majnu Film" style="width:100%;border-radius:1.5rem;margin-bottom:1rem;">
+              <h3>Laila Majnu (2018)</h3>
+              <p class="film-description">The romantic drama "Laila Majnu" chose Chai Jaai as one of its key filming locations, capturing the ethereal beauty and timeless romance that our tea room embodies.</p>
+              <blockquote class="film-quote">"Chai Jaai provided the perfect backdrop for our love story - a place where time stands still and every corner tells a tale of romance and tradition."<cite>- Film Production Team</cite></blockquote>
             </div>
           </div>
         </div>
@@ -142,14 +139,7 @@
 
     <div class="section-separator wave"></div>
 
-    <section id="gallery" class="gallery-section">
-        <h2>Our Artisanal Tea Ware</h2>
-        <p class="gallery-intro">Discover our hand-painted Pyāla collection, crafted by Srinagar artisans using 200-year-old naqashi art</p>
-        <div class="gallery-grid" id="galleryGrid">
-            <!-- Gallery items will be loaded dynamically -->
-        </div>
-    </section>
-
+    
     <div class="section-separator curved"></div>
 
     <section id="comments" class="comments-section">
@@ -196,54 +186,55 @@
     <div class="section-separator diamond"></div>
 
     <section id="about" class="about-section">
-        <h2>History of Chai Jaai</h2>
-        <p class="about-intro">Journey through time and discover how the ancient art of tea-making evolved into the modern Chai Jaai experience</p>
-        
-        <!-- Enhanced About Chai Jaai Details -->
-        <div class="chai-jaai-story">
-            <div class="story-card fade-in-scroll">
-                <div class="story-icon">🏛️</div>
-                <h3>The Foundation</h3>
-                <p>Founded as a harmonious blend of British tea room elegance and authentic Kashmiri artistry, Chai Jaai represents the perfect fusion of two rich cultural traditions.</p>
+        <div class="history-frame">
+            <h2>History of Chai Jaai</h2>
+            <p class="about-intro">Journey through time and discover how the ancient art of tea-making evolved into the modern Chai Jaai experience</p>
+            
+            <!-- Enhanced About Chai Jaai Details -->
+            <div class="chai-jaai-story">
+                <div class="story-card fade-in-scroll">
+                    <div class="story-icon">🏛️</div>
+                    <h3>The Foundation</h3>
+                    <p>Founded as a harmonious blend of British tea room elegance and authentic Kashmiri artistry, Chai Jaai represents the perfect fusion of two rich cultural traditions.</p>
+                </div>
+                <div class="story-card fade-in-scroll">
+                    <div class="story-icon">🏞️</div>
+                    <h3>The Location</h3>
+                    <p>Nestled on the historic Bund by the serene Jhelum river in Srinagar, housed within the artistic Mahattas Studio, offering breathtaking views of Kashmir's natural beauty.</p>
+                </div>
+                <div class="story-card fade-in-scroll">
+                    <div class="story-icon">🎨</div>
+                    <h3>The Artistry</h3>
+                    <p>Our décor features Victorian touches, traditional samovars, exquisite naqashi art, and authentic papier-mâché elements, creating an atmosphere of timeless elegance.</p>
+                </div>
             </div>
-            <div class="story-card fade-in-scroll">
-                <div class="story-icon">🏞️</div>
-                <h3>The Location</h3>
-                <p>Nestled on the historic Bund by the serene Jhelum river in Srinagar, housed within the artistic Mahattas Studio, offering breathtaking views of Kashmir's natural beauty.</p>
+            <div class="timeline-horizontal">
+              <div class="timeline-horizontal-event fade-in" style="--delay:0s">
+                <div class="timeline-horizontal-year left">🏛️ Ancient Times</div>
+                <div class="timeline-horizontal-line"></div>
+                <div class="timeline-horizontal-desc right">🍃 Tea arrives in Kashmir via the legendary Silk Road from China and Central Asia, weaving itself into the very fabric of local culture and daily life.</div>
+              </div>
+              <div class="timeline-horizontal-event fade-in" style="--delay:1.2s">
+                <div class="timeline-horizontal-year right">👑 17th–18th Century</div>
+                <div class="timeline-horizontal-line"></div>
+                <div class="timeline-horizontal-desc left">🌸 The magnificent Mughal empire brings refined tea traditions to Kashmir. Kahwa with its golden saffron and Noon Chai with its distinctive pink hue become beloved Kashmiri staples.</div>
+              </div>
+              <div class="timeline-horizontal-event fade-in" style="--delay:2.4s">
+                <div class="timeline-horizontal-year left">🫖 1800s</div>
+                <div class="timeline-horizontal-line"></div>
+                <div class="timeline-horizontal-desc right">✨ The elegant Samovar (Russian kettle) and delicate bone china cups become symbols of sophistication, elevating tea service to an art form in Kashmiri households.</div>
+              </div>
+              <div class="timeline-horizontal-event fade-in" style="--delay:3.6s">
+                <div class="timeline-horizontal-year right">🎯 2016</div>
+                <div class="timeline-horizontal-line"></div>
+                <div class="timeline-horizontal-desc left">🏠 Chai Jaai is lovingly founded in the heart of Srinagar by visionary Muneer Kabir, creating a magical fusion of traditional Kashmiri hospitality and elegant English tea room culture.</div>
+              </div>
+              <div class="timeline-horizontal-event fade-in" style="--delay:4.8s">
+                <div class="timeline-horizontal-year left">🌟 2017–2024</div>
+                <div class="timeline-horizontal-line"></div>
+                <div class="timeline-horizontal-desc right">🏆 Chai Jaai blossoms into a beloved cultural icon, renowned for its enchanting ambiance, exquisite artisan teaware, and an impressive collection of 60+ premium tea varieties from around the world.</div>
+              </div>
             </div>
-            <div class="story-card fade-in-scroll">
-                <div class="story-icon">🎨</div>
-                <h3>The Artistry</h3>
-                <p>Our décor features Victorian touches, traditional samovars, exquisite naqashi art, and authentic papier-mâché elements, creating an atmosphere of timeless elegance.</p>
-            </div>
-        </div>
-        
-        <div class="timeline-horizontal">
-          <div class="timeline-horizontal-event fade-in" style="--delay:0s">
-            <div class="timeline-horizontal-year left">🏛️ Ancient Times</div>
-            <div class="timeline-horizontal-line"></div>
-            <div class="timeline-horizontal-desc right">🍃 Tea arrives in Kashmir via the legendary Silk Road from China and Central Asia, weaving itself into the very fabric of local culture and daily life.</div>
-          </div>
-          <div class="timeline-horizontal-event fade-in" style="--delay:1.2s">
-            <div class="timeline-horizontal-year right">👑 17th–18th Century</div>
-            <div class="timeline-horizontal-line"></div>
-            <div class="timeline-horizontal-desc left">🌸 The magnificent Mughal empire brings refined tea traditions to Kashmir. Kahwa with its golden saffron and Noon Chai with its distinctive pink hue become beloved Kashmiri staples.</div>
-          </div>
-          <div class="timeline-horizontal-event fade-in" style="--delay:2.4s">
-            <div class="timeline-horizontal-year left">🫖 1800s</div>
-            <div class="timeline-horizontal-line"></div>
-            <div class="timeline-horizontal-desc right">✨ The elegant Samovar (Russian kettle) and delicate bone china cups become symbols of sophistication, elevating tea service to an art form in Kashmiri households.</div>
-          </div>
-          <div class="timeline-horizontal-event fade-in" style="--delay:3.6s">
-            <div class="timeline-horizontal-year right">🎯 2016</div>
-            <div class="timeline-horizontal-line"></div>
-            <div class="timeline-horizontal-desc left">🏠 Chai Jaai is lovingly founded in the heart of Srinagar by visionary Muneer Kabir, creating a magical fusion of traditional Kashmiri hospitality and elegant English tea room culture.</div>
-          </div>
-          <div class="timeline-horizontal-event fade-in" style="--delay:4.8s">
-            <div class="timeline-horizontal-year left">🌟 2017–2024</div>
-            <div class="timeline-horizontal-line"></div>
-            <div class="timeline-horizontal-desc right">🏆 Chai Jaai blossoms into a beloved cultural icon, renowned for its enchanting ambiance, exquisite artisan teaware, and an impressive collection of 60+ premium tea varieties from around the world.</div>
-          </div>
         </div>
     </section>
 
@@ -291,7 +282,7 @@
         <p class="section-intro">Where art meets cinema - our tea room has graced the silver screen</p>
         
         <div class="cinema-content">
-            <div class="film-card fade-in-scroll">
+            <div class="film-card fade-in-scroll laila-majnu-card">
                 <div class="film-poster">
                     <img src="https://images.unsplash.com/photo-1489599162163-3fb5b9e4b6d3?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Laila Majnu Film" loading="lazy">
                     <div class="film-overlay">
@@ -314,29 +305,49 @@
             </div>
         </div>
     </section>
-    <section id="menu" class="menu-section">
-        <h2>Our Menu</h2>
-        <div class="menu-items">
-            <div class="menu-category">
-                <h3>Signature Teas</h3>
-                <div class="menu-item">
-                    <h4>Noon Chai</h4>
-                    <p>Traditional pink tea made with green tea leaves, baking soda, and milk</p>
-                </div>
-                <div class="menu-item">
-                    <h4>Kahwah</h4>
-                    <p>Green tea infused with saffron, cardamom, cinnamon, and almonds</p>
-                </div>
-            </div>
-        </div>
-    </section>
 
     <div class="section-separator wave"></div>
 
     <footer>
-        <div class="contact-info">
-            <h3>Visit Us</h3>
-            <p>1201 The Bund, Srinagar, Jammu & Kashmir, India</p>
+        <div class="footer-content">
+            <div class="footer-section">
+                <div class="footer-logo">
+                    <h3>Chai Jaai</h3>
+                    <p class="footer-tagline">Where Art Meets Tea</p>
+                </div>
+            </div>
+            
+            <div class="footer-section">
+                <h4>Contact Us</h4>
+                <div class="contact-details">
+                    <p>📍 1st Floor, Mahattas Studio, The Bund Road, Srinagar, Jammu & Kashmir, India</p>
+                    <p>📞 +91 95962 48937</p>
+                    <p>✉️ hello@chaijaai.com</p>
+                </div>
+                <div class="social-links">
+                    <a href="https://instagram.com/chaijaai" target="_blank" class="social-link instagram"><span class="social-icon">📷</span>Instagram</a>
+                    <a href="https://facebook.com/chaijaai" target="_blank" class="social-link facebook"><span class="social-icon">📘</span>Facebook</a>
+                </div>
+            </div>
+            
+            <div class="footer-section">
+                <h4>Experience</h4>
+                <ul class="footer-links">
+                    <li><a href="#menu">Our Teas</a></li>
+                    <li><a href="#shop">Artisan Teaware</a></li>
+                    <li><a href="#culture">Kashmiri Culture</a></li>
+                    <li><a href="#cinema">Film Appearances</a></li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="footer-bottom">
+            <div class="footer-ambient">
+                <div class="floating-leaf leaf-1">🍃</div>
+                <div class="floating-leaf leaf-2">🍃</div>
+                <div class="floating-leaf leaf-3">🍃</div>
+            </div>
+            <p>&copy; 2024 Chai Jaai. All rights reserved. | Crafted with ❤️ in Kashmir</p>
         </div>
     </footer>
 
@@ -433,66 +444,9 @@
                 </form>
                 
                 <p class="auth-switch">
-        <div class="footer-content">
-            <div class="footer-section">
-                <div class="footer-logo">
-                    <h3>Chai Jaai</h3>
-                    <p class="footer-tagline">Where Art Meets Tea</p>
-                </div>
+                    Already have an account? <a href="#" onclick="switchAuthForm('login')">Login</a>
+                </p>
             </div>
-            
-            <div class="footer-section">
-                <h4>Visit Us</h4>
-                <div class="contact-details">
-                    <p>📍 1st Floor, Mahattas Studio</p>
-                    <p>The Bund Road, Srinagar</p>
-                    <p>Jammu & Kashmir, India</p>
-                    <p>📞 +91 95962 48937</p>
-                    <p>🕘 9:00 AM - 9:00 PM (Daily)</p>
-                    <p>✉️ hello@chaijaai.com</p>
-                </div>
-            </div>
-            
-            <div class="footer-section">
-                <h4>Follow Us</h4>
-                <div class="social-links">
-                    <a href="https://instagram.com/chaijaai" target="_blank" class="social-link instagram">
-                        <span class="social-icon">📷</span>
-                        <span>Instagram</span>
-                    </a>
-                    <a href="https://facebook.com/chaijaai" target="_blank" class="social-link facebook">
-                        <span class="social-icon">📘</span>
-                        <span>Facebook</span>
-                    </a>
-                    <a href="https://twitter.com/chaijaai_tea" target="_blank" class="social-link twitter">
-                        <span class="social-icon">🐦</span>
-                        <span>Twitter</span>
-                    </a>
-                    <a href="https://pinterest.com/chaijaai" target="_blank" class="social-link pinterest">
-                        <span class="social-icon">📌</span>
-                        <span>Pinterest</span>
-                    </a>
-                </div>
-            </div>
-            
-            <div class="footer-section">
-                <h4>Experience</h4>
-                <ul class="footer-links">
-                    <li><a href="#menu">Our Teas</a></li>
-                    <li><a href="#shop">Artisan Teaware</a></li>
-                    <li><a href="#culture">Kashmiri Culture</a></li>
-                    <li><a href="#cinema">Film Appearances</a></li>
-                </ul>
-            </div>
-        </div>
-        
-        <div class="footer-bottom">
-            <div class="footer-ambient">
-                <div class="floating-leaf leaf-1">🍃</div>
-                <div class="floating-leaf leaf-2">🍃</div>
-                <div class="floating-leaf leaf-3">🍃</div>
-            </div>
-            <p>&copy; 2024 Chai Jaai. All rights reserved. | Crafted with ❤️ in Kashmir</p>
         </div>
     </div>
 
